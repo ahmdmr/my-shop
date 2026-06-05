@@ -37,6 +37,7 @@
                     document.getElementById("item-page").style.display = "none";
                     document.getElementById(section + "-section").style.display = "block";
                 }
+                document.getElementById("whatsapp-btn").href = `https://wa.me/963XXXXXXXXX?text=I want to order: ${name}`;
             }
         </script>
         <title>Ahmad's Shop sy</title>
@@ -267,7 +268,7 @@
 <img id="item-img" src="">
 <h2 id="item-name"></h2>
 <p>Price: <span id="item-price"></span></p>
-<a href="https://wa.me/963943943463?text=Hello I want to order item-name" target="_blank">
+<a id="whatsapp-btn" href="#" target="_blank">
         <button>Order on WhatsApp 📱</button>
     </a>
 </div>
@@ -277,7 +278,7 @@
             <img src="ex.webp">
         </div>
 
-        <div class="exit" id="Exit2" onclick="exit2('anime')">
+        <div class="exit" id="Exit2" onclick="exit2()">
             <img src="ex.webp">
         </div>
     </body>
