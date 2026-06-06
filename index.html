@@ -127,7 +127,7 @@
                 min-height: 400px;
                 box-sizing: border-box;
                 margin: 0 auto;
-                overflow-y: auto;     
+                overflow: auto;     
                 border-radius: 15px;
                 padding: 40px;
                 padding-top: 80px;
@@ -164,6 +164,10 @@
             @media (max-width: 600px) {
                 .box p {
                     font-size: 14px;
+                }
+                .item {
+                    height: 850px;
+                    overflow: hidden;
                 }
 }
             
@@ -262,11 +266,9 @@
 <img id="item-img" src="">
 <h2 id="item-name"></h2>
 <p>Price: <span id="item-price"></span></p>
-<a href="https://docs.google.com/forms/d/e/1FAIpQLSdQZG5-mQ5wFMiQ5gC3Y3E_QVePkAl0Ns0RZXqs6M5MbvyNwg/viewform?usp=header" target="_blank">
-        <button class="btn">Order</button>
-    </a>
-</div>
-
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSdQZG5-mQ5wFMiQ5gC3Y3E_QVePkAl0Ns0RZXqs6M5MbvyNwg/viewform?usp=dialog">
+    <button class="btn">Order</button>
+</a>
         <!--Exit-->
         <div class="exit" id="Exit" onclick="exit()">
             <img src="ex.webp">
