@@ -40,6 +40,85 @@
                 }
                 document.getElementById("order-link").href = `https://docs.google.com/forms/d/e/1FAIpQLSdQZG5-mQ5wFMiQ5gC3Y3E_QVePkAl0Ns0RZXqs6M5MbvyNwg/viewform?usp=pp_url&entry.1502566727=${name}`;
             }
+            function togglesetting() {
+                let list = document.getElementById("setting-list");
+                if (list.style.display === "none" || list.style.display === "") {
+                    list.style.display = "block";
+            }   
+            else {
+                    list.style.display = "none";
+        }
+}
+
+const translations = {
+    english: {
+        title: "Anime Shop",
+        anime: "Anime",
+        gadgets: "Gadgets",
+        other: "Other",
+        language: "Language",
+        item1: "Item 1",
+        item2: "Item 2",
+        item3: "Item 3",
+        price1: "5000SYP",
+        price2: "10000SYP",
+        price3: "15000SYP",
+        price4: "20000SYP",
+        price5: "25000SYP",
+        price6: "30000SYP",
+        price7: "7500SYP",
+        price8: "5500SYP",
+        price9: "2500SYP"
+    },
+    arabic: {
+        title: "متجر أنمي",
+        anime: "أنمي",
+        gadgets: "غادجت",
+        other: "أخرى",
+        language: "اللغة",
+        item1: "الغرض الاول",
+        item2: "الغرض الثاني",
+        item3: "الغرض الثالث",
+        price1: "5000 ل.س",
+        price2: "10000 ل.س",
+        price3: "15000 ل.س",
+        price4: "20000 ل.س",
+        price5: "25000 ل.س",
+        price6: "30000 ل.س",
+        price7: "7500 ل.س",
+        price8: "5500 ل.س",
+        price9: "2500 ل.س"
+    }
+}
+
+let currentLang = "english";
+
+function changelanguage() {
+    // switch between english and arabic
+    currentLang = currentLang === "english" ? "arabic" : "english";
+    
+    // update all text
+    document.getElementById("main-title").innerHTML = translations[currentLang].title;
+    document.getElementById("anime-btn").innerHTML = translations[currentLang].anime;
+    document.getElementById("gadget-btn").innerHTML = translations[currentLang].gadgets;
+    document.getElementById("other-btn").innerHTML = translations[currentLang].other;
+    document.getElementById("setting-list").innerHTML = translations[currentLang].language;
+    document.getElementById("item-wrd1").innerHTML = translations[currentLang].item1;
+    document.getElementById("item-wrd2").innerHTML = translations[currentLang].item2;
+    document.getElementById("item-wrd3").innerHTML = translations[currentLang].item3;
+    document.getElementById("item-price1").innerHTML = translations[currentLang].price1;
+    document.getElementById("item-price2").innerHTML = translations[currentLang].price2;
+    document.getElementById("item-price3").innerHTML = translations[currentLang].price3;
+    document.getElementById("item-price4").innerHTML = translations[currentLang].price4;
+    document.getElementById("item-price5").innerHTML = translations[currentLang].price5;
+    document.getElementById("item-price6").innerHTML = translations[currentLang].price6;
+    document.getElementById("item-price7").innerHTML = translations[currentLang].price7;
+    document.getElementById("item-price8").innerHTML = translations[currentLang].price8;
+    document.getElementById("item-price9").innerHTML = translations[currentLang].price9;
+    // switch text direction
+    document.body.style.direction = currentLang === "arabic" ? "rtl" : "ltr";
+}
+
         </script>
         <title>Ahmad's Shop sy</title>
         <style>
@@ -82,9 +161,15 @@
 
             .box p {
                 color: white;
-                font-size: 20px;
+                font-size: 15px;
                 margin-top: 10px;
             }
+
+            .box h3 {
+                color: white;
+                margin-top: 10px;
+            }
+
             .box:hover {
                 scale: 1.1;
                 background-color: #11192f;
@@ -162,6 +247,37 @@
                 width: fit-content;
                 cursor: pointer;
             }
+
+            .setting {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                width: 50px;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+
+            .setting:hover {
+                scale: 1.1;
+            }
+
+            .setting img {
+                width: 50px;
+            }
+            
+            .setting-list {
+                position: fixed;
+                top: 80px;
+                right: 20px;
+                width: 200px;
+                height: 40px;
+                padding: 8px;
+                border-radius: 5px;
+                background-color: white;
+                display: none;
+                border: none;
+            }
+
             @media (max-width: 600px) {
                 .box p {
                     font-size: 14px;
@@ -181,17 +297,17 @@
 
             <div class="box" onclick="opensection('anime')">
                 <img src="anime.jpg">
-                <p>Anime</p>
+                <h3 id="anime-btn">Anime</h3>
             </div>
 
             <div class="box" onclick="opensection('gadget')">
                 <img src="anime.jpg">
-                <p>Gadgets</p>
+                <h3 id="gadget-btn">Gadgets</h3>
             </div>
 
             <div class="box" onclick="opensection('other')">
                 <img src="anime.jpg">
-                <p>Other</p>
+                <h3 id="other-btn">Other</h3>
             </div>
 
         </div>
@@ -202,18 +318,18 @@
     <div class="container">
         <div class="box" onclick="openitem('Item 1', '5000SYP', 'anime.jpg', 'anime')">
             <img src="anime.jpg">
-            <p>Item 1</p>
-            <p>Price: 5000SYP</p>
+            <h3 id="item-wrd1">Item 1</h3>
+            <p id="item-price1">5000SYP</p>
         </div>
-        <div class="box" onclick="openitem('Item 2', '1000SYP', 'anime.jpg', 'anime')">
+        <div class="box" onclick="openitem('Item 2', '10000SYP', 'anime.jpg', 'anime')">
             <img src="anime.jpg">
-            <p>Item 2</p>
-            <p>Price: 10000SYP</p>
+            <h3 id="item-wrd2">Item 2</h3>
+            <p id="item-price2">10000SYP</p>
         </div>
         <div class="box" onclick="openitem('Item 3', '15000SYP', 'anime.jpg', 'anime')">
             <img src="anime.jpg">
-            <p>Item 3</p>
-            <p>Price: 15000SYP</p>
+            <h3 id="item-wrd3">Item 3</h3>
+            <p id="item-price3">15000SYP</p>
         </div>
     </div>
 </div>
@@ -224,18 +340,18 @@
     <div class="container">
         <div class="box" onclick="openitem('Item 1', '20000SYP', 'anime.jpg', 'gadget')">
             <img src="anime.jpg">
-            <p>Item 1</p>
-            <p>Price: 20000SYP</p>
+            <h3 id="item-wrd1">Item 1</h3>
+            <p id="item-price4">20000SYP</p>
         </div>
         <div class="box" onclick="openitem('Item 2', '25000SYP', 'anime.jpg', 'gadget')">
             <img src="anime.jpg">
-            <p>Item 2</p>
-            <p>Price: 25000SYP</p>
+            <h3 id="item-wrd2">Item 2</h3>
+            <p id="item-price5">25000SYP</p>
         </div>
         <div class="box" onclick="openitem('Item 3', '30000SYP', 'anime.jpg', 'gadget')">
             <img src="anime.jpg">
-            <p>Item 3</p>
-            <p>Price: 30000SYP</p>
+            <h3 id="item-wrd3">Item 3</h3>
+            <p id="item-price6">30000SYP</p>
         </div>
     </div>
 </div>
@@ -244,20 +360,20 @@
 <div class="section" id="other-section">
     <h1 class="section-title">Other Items</h1>
     <div class="container">
-        <div class="box" onclick="openitem('الغرض الاول', '7500SYP', 'anime.jpg', 'other')">
+        <div class="box" onclick="openitem('item 1', '7500SYP', 'anime.jpg', 'other')">
             <img src="anime.jpg">
-            <p>الغرض الاول</p>
-            <p>Price: 7500SYP</p>
+            <h3 id="item-wrd1">item 1</h3>
+            <p id="item-price7">7500SYP</p>
         </div>
         <div class="box" onclick="openitem('Item 2', '5500SYP', 'anime.jpg', 'other')">
             <img src="anime.jpg">
-            <p>Item 2</p>
-            <p>Price: 5500SYP</p>
+            <h3 id="item-wrd2">Item 2</h3>
+            <p id="item-price8">5500SYP</p>
         </div>
         <div class="box" onclick="openitem('Item 3', '2500SYP', 'anime.jpg', 'other')">
             <img src="anime.jpg">
-            <p>Item 3</p>
-            <p>Price: 2500SYP</p>
+            <h3 id="item-wrd3">Item 3</h3>
+            <p id="item-price9">2500SYP</p>
         </div>
     </div>
 </div>
@@ -279,5 +395,13 @@
         <div class="exit" id="Exit2" onclick="exit2()">
             <img src="ex.webp">
         </div>
+
+        <!--settings-->
+
+        <div class="setting" id="setting" onclick="togglesetting()">
+            <img src="setting.png">
+        </div>
+
+        <div class="setting-list" id="setting-list" onclick="changelanguage()">Language</div>
     </body>
 </html>
