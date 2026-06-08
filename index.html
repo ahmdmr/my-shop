@@ -56,7 +56,7 @@ const translations = {
         anime: "Anime",
         gadgets: "Gadgets",
         other: "Other",
-        language: "Language",
+        language: "Language Arabic",
         item1: "Item 1",
         item2: "Item 2",
         item3: "Item 3",
@@ -68,14 +68,15 @@ const translations = {
         price6: "30000SYP",
         price7: "7500SYP",
         price8: "5500SYP",
-        price9: "2500SYP"
+        price9: "2500SYP",
+        background: "Background color"
     },
     arabic: {
         title: "متجر أنمي",
         anime: "أنمي",
         gadgets: "غادجت",
         other: "أخرى",
-        language: "اللغة",
+        language: " اللغة الانكليزية",
         item1: "الغرض الاول",
         item2: "الغرض الثاني",
         item3: "الغرض الثالث",
@@ -87,7 +88,8 @@ const translations = {
         price6: "30000 ل.س",
         price7: "7500 ل.س",
         price8: "5500 ل.س",
-        price9: "2500 ل.س"
+        price9: "2500 ل.س",
+        background: "لون الخلفية"
     }
 }
 
@@ -102,7 +104,7 @@ function changelanguage() {
     document.getElementById("anime-btn").innerHTML = translations[currentLang].anime;
     document.getElementById("gadget-btn").innerHTML = translations[currentLang].gadgets;
     document.getElementById("other-btn").innerHTML = translations[currentLang].other;
-    document.getElementById("setting-list").innerHTML = translations[currentLang].language;
+    document.getElementById("setting-btn").innerHTML = translations[currentLang].language;
     document.getElementById("item-wrd1").innerHTML = translations[currentLang].item1;
     document.getElementById("item-wrd2").innerHTML = translations[currentLang].item2;
     document.getElementById("item-wrd3").innerHTML = translations[currentLang].item3;
@@ -115,8 +117,34 @@ function changelanguage() {
     document.getElementById("item-price7").innerHTML = translations[currentLang].price7;
     document.getElementById("item-price8").innerHTML = translations[currentLang].price8;
     document.getElementById("item-price9").innerHTML = translations[currentLang].price9;
+    document.getElementById("background-wrd").innerHTML = translations[currentLang].background;
     // switch text direction
     document.body.style.direction = currentLang === "arabic" ? "rtl" : "ltr";
+}
+
+const theme = {
+    dark: {
+mainbackground: "#1a1a2e",
+boxesbackground: "#16213e"
+    },
+    white: {
+mainbackground: "white",
+boxesbackground: "white",
+    }
+}
+
+let backgroundtheme = "dark";
+
+
+function toggletheme() {
+    backgroundtheme = backgroundtheme === "dark" ? "white" : "dark";
+
+document.getElementById("body").style.backgroundColor = theme[backgroundtheme].mainbackground;
+
+let boxes = document.getElementsByClassName("box");
+for (let i = 0; i < boxes.length; i++) {
+    boxes[i].style.backgroundColor = theme[backgroundtheme].boxesbackground;
+}
 }
 
         </script>
@@ -151,6 +179,7 @@ function changelanguage() {
                 text-align: center;
                 cursor: pointer;
                 transition: 0.3s;
+                box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
             }
 
             .box img {
@@ -269,13 +298,29 @@ function changelanguage() {
                 position: fixed;
                 top: 80px;
                 right: 20px;
-                width: 200px;
-                height: 40px;
+                width: 230px;
+                height: 80px;
                 padding: 8px;
                 border-radius: 5px;
                 background-color: white;
                 display: none;
                 border: none;
+                align-content: left;
+            }
+
+            .setting-btn {
+                border: none;
+                background-color: white;
+                color: black;
+                height: 40px;
+                width: 160px;
+                font-size: 18px;
+                text-align: left;
+                cursor: pointer;
+            }
+
+            .setting-btn:hover {
+                background-color: rgb(208, 208, 208);
             }
 
             @media (max-width: 600px) {
@@ -290,22 +335,22 @@ function changelanguage() {
             
         </style>
     </head>
-    <body>
+    <body id="body">
         <h1 class="title" id="main-title">Anime shope sy</h1>
 
         <div class="container" id="categories">
 
-            <div class="box" onclick="opensection('anime')">
+            <div class="box" id="main-boxes" onclick="opensection('anime')">
                 <img src="anime.jpg">
                 <h3 id="anime-btn">Anime</h3>
             </div>
 
-            <div class="box" onclick="opensection('gadget')">
+            <div class="box" id="main-boxes" onclick="opensection('gadget')">
                 <img src="anime.jpg">
                 <h3 id="gadget-btn">Gadgets</h3>
             </div>
 
-            <div class="box" onclick="opensection('other')">
+            <div class="box" id="main-boxes" onclick="opensection('other')">
                 <img src="anime.jpg">
                 <h3 id="other-btn">Other</h3>
             </div>
@@ -316,17 +361,17 @@ function changelanguage() {
 <div class="section" id="anime-section">
     <h1 class="section-title">Anime Items</h1>
     <div class="container">
-        <div class="box" onclick="openitem('Item 1', '5000SYP', 'anime.jpg', 'anime')">
+        <div class="box" id="main-boxes" onclick="openitem('Item 1', '5000SYP', 'anime.jpg', 'anime')">
             <img src="anime.jpg">
             <h3 id="item-wrd1">Item 1</h3>
             <p id="item-price1">5000SYP</p>
         </div>
-        <div class="box" onclick="openitem('Item 2', '10000SYP', 'anime.jpg', 'anime')">
+        <div class="box" id="main-boxes" onclick="openitem('Item 2', '10000SYP', 'anime.jpg', 'anime')">
             <img src="anime.jpg">
             <h3 id="item-wrd2">Item 2</h3>
             <p id="item-price2">10000SYP</p>
         </div>
-        <div class="box" onclick="openitem('Item 3', '15000SYP', 'anime.jpg', 'anime')">
+        <div class="box" id="main-boxes" onclick="openitem('Item 3', '15000SYP', 'anime.jpg', 'anime')">
             <img src="anime.jpg">
             <h3 id="item-wrd3">Item 3</h3>
             <p id="item-price3">15000SYP</p>
@@ -338,17 +383,17 @@ function changelanguage() {
 <div class="section" id="gadget-section">
     <h1 class="section-title">Gadgets Items</h1>
     <div class="container">
-        <div class="box" onclick="openitem('Item 1', '20000SYP', 'anime.jpg', 'gadget')">
+        <div class="box" id="main-boxes" onclick="openitem('Item 1', '20000SYP', 'anime.jpg', 'gadget')">
             <img src="anime.jpg">
             <h3 id="item-wrd1">Item 1</h3>
             <p id="item-price4">20000SYP</p>
         </div>
-        <div class="box" onclick="openitem('Item 2', '25000SYP', 'anime.jpg', 'gadget')">
+        <div class="box" id="main-boxes" onclick="openitem('Item 2', '25000SYP', 'anime.jpg', 'gadget')">
             <img src="anime.jpg">
             <h3 id="item-wrd2">Item 2</h3>
             <p id="item-price5">25000SYP</p>
         </div>
-        <div class="box" onclick="openitem('Item 3', '30000SYP', 'anime.jpg', 'gadget')">
+        <div class="box" id="main-boxes" onclick="openitem('Item 3', '30000SYP', 'anime.jpg', 'gadget')">
             <img src="anime.jpg">
             <h3 id="item-wrd3">Item 3</h3>
             <p id="item-price6">30000SYP</p>
@@ -360,17 +405,17 @@ function changelanguage() {
 <div class="section" id="other-section">
     <h1 class="section-title">Other Items</h1>
     <div class="container">
-        <div class="box" onclick="openitem('item 1', '7500SYP', 'anime.jpg', 'other')">
+        <div class="box" id="main-boxes" onclick="openitem('item 1', '7500SYP', 'anime.jpg', 'other')">
             <img src="anime.jpg">
             <h3 id="item-wrd1">item 1</h3>
             <p id="item-price7">7500SYP</p>
         </div>
-        <div class="box" onclick="openitem('Item 2', '5500SYP', 'anime.jpg', 'other')">
+        <div class="box" id="main-boxes" onclick="openitem('Item 2', '5500SYP', 'anime.jpg', 'other')">
             <img src="anime.jpg">
             <h3 id="item-wrd2">Item 2</h3>
             <p id="item-price8">5500SYP</p>
         </div>
-        <div class="box" onclick="openitem('Item 3', '2500SYP', 'anime.jpg', 'other')">
+        <div class="box" id="main-boxes" onclick="openitem('Item 3', '2500SYP', 'anime.jpg', 'other')">
             <img src="anime.jpg">
             <h3 id="item-wrd3">Item 3</h3>
             <p id="item-price9">2500SYP</p>
@@ -402,6 +447,9 @@ function changelanguage() {
             <img src="setting.png">
         </div>
 
-        <div class="setting-list" id="setting-list" onclick="changelanguage()">Language</div>
+        <div class="setting-list" id="setting-list">
+            <button class="setting-btn" id="setting-btn" onclick="changelanguage()">Language</button>
+            <button class="setting-btn" id="background-wrd" onclick="toggletheme()">Background</button>
+        </div>
     </body>
 </html>
